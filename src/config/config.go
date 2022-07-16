@@ -32,7 +32,7 @@ func LoadEnvironmentVariables() {
 	}
 
 	// Load database config variables
-	if _, err := env.UnmarshalFromEnviron(&DatabaseConfig{}); err != nil {
+	if _, err := env.UnmarshalFromEnviron(&Database); err != nil {
 		log.Fatal(err)
 	}
 
