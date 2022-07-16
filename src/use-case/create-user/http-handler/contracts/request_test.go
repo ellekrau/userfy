@@ -1,39 +1,52 @@
 package contracts
 
 import (
-	"bytes"
-	"encoding/json"
-	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
-	"net/http/httptest"
 	"testing"
 )
 
-func TestCreateRequest(t *testing.T) {
+func TestValidate(t *testing.T) {
 	testCases := []struct {
-		Name      string `json: "name"`
-		Cellphone string `json: "cellphone"`
+		TestCase     string
+		Request      Request
+		ErrorMessage string
 	}{
 		{
-			Name:      "name",
-			Cellphone: "cellphone",
+			TestCase: "Cellphone with letters",
+			Request: Request{
+				Name:      "name",
+				Cellphone: "cellphone",
+			},
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
+		},
+		{
+			TestCase: "Cellphone with letters and numbers",
+			Request: Request{
+				Name:      "name",
+				Cellphone: "479928342a",
+			},
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
+		},
+		{
+			TestCase: "Empty name",
+			Request: Request{
+				Name:      "",
+				Cellphone: "999999999",
+			},
+			ErrorMessage: "Key: 'Request.Name' Error:Field validation for 'Name' failed on the 'required' tag",
+		},
+		{
+			TestCase: "Empty cellphone",
+			Request: Request{
+				Name:      "Name",
+				Cellphone: "",
+			},
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'required' tag",
 		},
 	}
 
 	for _, tc := range testCases {
-		// Creates a gin test context
-		ctx, _ := gin.CreateTestContext(httptest.NewRecorder())
-
-		// Converts the test request struct to json
-		b, _ := json.Marshal(tc)
-
-		// Injects the test request json in test context request body
-		ctx.Request.Body = ioutil.NopCloser(bytes.NewBuffer(b))
-
-		r, err := CreateRequest(ctx)
-
-		assert.Empty(t, r)
-		assert.Error(t, err)
+		err := tc.Request.validate()
+		assert.Equal(t, tc.ErrorMessage, err.Error(), tc.TestCase)
 	}
 }
