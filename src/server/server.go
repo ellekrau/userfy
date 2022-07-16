@@ -1,9 +1,11 @@
 package server
 
 import (
+	"fmt"
 	createuserhttphandler "github.com/ellekrau/mercafacil/use-case/create-user/http-handler"
 	"github.com/gin-gonic/gin"
 	"log"
+	"os"
 )
 
 func RunServer() {
@@ -12,9 +14,7 @@ func RunServer() {
 
 	router.POST("/user", createuserhttphandler.CreateUserHttpHandler)
 
-	// TODO Pass port like ":3300"
-	// TODO Get port from .env
-	if err := router.Run(); err != nil {
-		log.Fatalln("run router error: ", err.Error())
+	if err := router.Run(fmt.Sprintf(":%s", os.Getenv("PORT"))); err != nil {
+		log.Fatalln("Error starting server: ", err.Error())
 	}
 }
