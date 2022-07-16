@@ -5,24 +5,24 @@ import (
 	"log"
 )
 
-type ServiceConfig struct {
+type serviceConfig struct {
 	Port string `env:"PORT,required=true"`
 }
 
-type DatabaseConfig struct {
+type databaseConfig struct {
 	Port    int32  `env:"DB_PORT,required=true"`
 	Address string `env:"DB_ADDRESS,required=true"`
 }
 
-type UserDataConfig struct {
+type userDataConfig struct {
 	NamePattern      string `env:"NAME_PATTERN"`
 	CellphonePattern string `env:"CELLPHONE_PATTERN"`
 }
 
 var (
-	Service  ServiceConfig
-	Database DatabaseConfig
-	UserData UserDataConfig
+	Service  serviceConfig
+	Database databaseConfig
+	UserData userDataConfig
 )
 
 func LoadEnvironmentVariables() {
