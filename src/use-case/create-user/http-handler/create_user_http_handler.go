@@ -3,6 +3,8 @@ package createuserhttphandler
 import (
 	"fmt"
 	"github.com/ellekrau/mercafacil/use-case/create-user/http-handler/contracts"
+	createuserservices "github.com/ellekrau/mercafacil/use-case/create-user/services"
+	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -14,6 +16,9 @@ func CreateUserHttpHandler(c *gin.Context) {
 		return
 	}
 	fmt.Sprint(request)
+
+	serviceInput := createuserservicecontracts.NewCreateUserServiceInput(request.Name, request.Cellphone)
+	createuserservices.CreateUser(c, serviceInput)
 
 	c.JSON(http.StatusNotImplemented, contracts.NewResponse("Hello world!"))
 }

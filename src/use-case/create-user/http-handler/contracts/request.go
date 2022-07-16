@@ -7,7 +7,7 @@ import (
 
 type Request struct {
 	Name      string `json:"name" validate:"required"`
-	Cellphone string `json:"cellphone" validate:"required,number"`
+	Cellphone string `json:"cellphone" validate:"required,number"` // TODO Add char count validation
 }
 
 func CreateRequest(c *gin.Context) (Request, error) {
