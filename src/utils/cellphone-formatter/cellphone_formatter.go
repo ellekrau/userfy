@@ -5,18 +5,18 @@ import (
 	"strings"
 )
 
-func FormatCellphone(cellphone string) string {
+func FormatCellphone(inputCellphone string) string {
 	// If the CellphonePattern variable is empty just returns the cellphone input value
 	if config.UserData.CellphonePattern == "" {
-		return cellphone
+		return inputCellphone
 	}
 
-	result := config.UserData.CellphonePattern
-	cellphoneDigits := strings.Split(cellphone, "")
+	outputCellphone := config.UserData.CellphonePattern
+	cellphoneDigits := strings.Split(inputCellphone, "")
 
 	for i := 0; i < len(cellphoneDigits); i++ {
-		result = strings.Replace(result, "0", cellphoneDigits[i], 1)
+		outputCellphone = strings.Replace(outputCellphone, "0", cellphoneDigits[i], 1)
 	}
 
-	return result
+	return outputCellphone
 }

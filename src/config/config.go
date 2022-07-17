@@ -3,12 +3,14 @@ package config
 import (
 	"errors"
 	"github.com/Netflix/go-env"
+	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
 	"log"
 	"strings"
 )
 
 const cellphoneDigitsCount = 13
 const errInvalidCellphonePattern = "invalid value in 'CELLPHONE PATTERN'"
+const errInvalidNamePattern = "invalid value in 'NAME PATTERN'"
 
 type serviceConfig struct {
 	Port string `env:"PORT,required=true"`
@@ -41,8 +43,11 @@ func LoadEnvironmentVariables() {
 		log.Fatal(err)
 	}
 
-	// Validates that cellphone pattern is a valid format
+	// Validates if cellphone pattern is a valid format
 	validateCellphonePattern()
+
+	// Validates if NamePattern is an expected value
+	validateNamePattern()
 }
 
 func validateCellphonePattern() error {
@@ -56,4 +61,11 @@ func validateCellphonePattern() error {
 	}
 
 	return errors.New(errInvalidCellphonePattern)
+}
+
+func validateNamePattern() error {
+	if namepatternenum.IsNamePatternEnumValue(UserData.NamePattern) {
+		return nil
+	}
+	return errors.New(errInvalidNamePattern)
 }
