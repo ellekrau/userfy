@@ -1,11 +1,8 @@
 package config
 
 import (
-	"errors"
 	"github.com/Netflix/go-env"
-	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
 	"log"
-	"strings"
 )
 
 const cellphoneDigitsCount = 13
@@ -14,6 +11,10 @@ const errInvalidNamePattern = "invalid value in 'NAME PATTERN'"
 
 type serviceConfig struct {
 	Port string `env:"PORT,required=true"`
+}
+
+type authenticationConfig struct {
+	ExpirationTimeMinutes int `env:"EXPIRATION_TIME_MINUTES,required=true"`
 }
 
 type databaseConfig struct {
@@ -27,14 +28,20 @@ type userDataConfig struct {
 }
 
 var (
-	Service  serviceConfig
-	Database databaseConfig
-	UserData userDataConfig
+	Service        serviceConfig
+	Authentication authenticationConfig
+	Database       databaseConfig
+	UserData       userDataConfig
 )
 
 func LoadEnvironmentVariables() {
 	// Loads service variables
 	if _, err := env.UnmarshalFromEnviron(&Service); err != nil {
+		log.Fatal(err)
+	}
+
+	// Loads authentication variables
+	if _, err := env.UnmarshalFromEnviron(&Authentication); err != nil {
 		log.Fatal(err)
 	}
 
@@ -44,37 +51,23 @@ func LoadEnvironmentVariables() {
 	}
 
 	// Loads user data variables
+	if err := loadUserDataConfig(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func loadUserDataConfig() error {
 	if _, err := env.UnmarshalFromEnviron(&UserData); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	// Validates if cellphone pattern is a valid format
 	if err := validateCellphonePattern(); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	// Validates if NamePatternEnum is an expected value
 	if err := validateNamePattern(); err != nil {
-		log.Fatal(err)
-	}
-}
-
-func validateCellphonePattern() error {
-	if UserData.CellphonePattern == "" {
-		return nil
+		return err
 	}
 
-	patternCellphoneDigits := strings.Count(UserData.CellphonePattern, "0")
-	if patternCellphoneDigits == cellphoneDigitsCount {
-		return nil
-	}
-
-	return errors.New(errInvalidCellphonePattern)
-}
-
-func validateNamePattern() error {
-	if namepatternenum.IsNamePatternEnumValue(UserData.NamePattern) {
-		return nil
-	}
-	return errors.New(errInvalidNamePattern)
+	return nil
 }
