@@ -22,8 +22,12 @@ type dataSecurityConfig struct {
 }
 
 type databaseConfig struct {
-	Port    int32  `env:"DB_PORT,required=true"`
-	Address string `env:"DB_ADDRESS,required=true"`
+	DB       string `env:"DB,required=true"`
+	Host     string `env:"DB_HOST,required=true"`
+	Port     string `env:"DB_PORT,required=true"`
+	Name     string `env:"DB_NAME,required=true"`
+	User     string `env:"DB_USER,required=true"`
+	Password string `env:"DB_PASSWORD,required=true"`
 }
 
 type userDataConfig struct {

@@ -2,9 +2,31 @@ package database
 
 import (
 	"database/sql"
-	"errors"
+	"fmt"
+	"github.com/ellekrau/mercafacil/config"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
 )
 
-func GetDatabase() (*sql.DB, error) {
-	return nil, errors.New("db connection error")
+var database *sql.DB
+
+var errDatabaseConnection = "database connection error: "
+
+func GetDatabase() *sql.DB {
+	return database
+}
+
+func StartDatabase() {
+	var err error
+
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/",
+		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port)
+
+	if database, err = sql.Open(config.Database.DB, connectionString); err != nil {
+		log.Fatalln(errDatabaseConnection, err.Error())
+	}
+
+	if err = database.Ping(); err != nil {
+		log.Fatalln(errDatabaseConnection, err.Error())
+	}
 }
