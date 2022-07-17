@@ -14,7 +14,7 @@ type serviceConfig struct {
 }
 
 type authenticationConfig struct {
-	ExpirationTimeMinutes int `env:"EXPIRATION_TIME_MINUTES,required=true"`
+	Key string `env:"KEY,required=true"`
 }
 
 type databaseConfig struct {
