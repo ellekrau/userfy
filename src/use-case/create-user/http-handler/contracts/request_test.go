@@ -17,7 +17,7 @@ func TestValidateRequestContract(t *testing.T) {
 				Name:      "name",
 				Cellphone: "cellphone",
 			},
-			ErrorMessage: "JWTKey: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
 		},
 		{
 			TestCase: "Cellphone with letters and numbers",
@@ -25,7 +25,7 @@ func TestValidateRequestContract(t *testing.T) {
 				Name:      "name",
 				Cellphone: "479928342a",
 			},
-			ErrorMessage: "JWTKey: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'number' tag",
 		},
 		{
 			TestCase: "Empty name",
@@ -33,7 +33,7 @@ func TestValidateRequestContract(t *testing.T) {
 				Name:      "",
 				Cellphone: "999999999",
 			},
-			ErrorMessage: "JWTKey: 'Request.Name' Error:Field validation for 'Name' failed on the 'required' tag",
+			ErrorMessage: "Key: 'Request.Name' Error:Field validation for 'Name' failed on the 'required' tag",
 		},
 		{
 			TestCase: "Empty cellphone",
@@ -41,7 +41,7 @@ func TestValidateRequestContract(t *testing.T) {
 				Name:      "Name",
 				Cellphone: "",
 			},
-			ErrorMessage: "JWTKey: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'required' tag",
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'required' tag",
 		},
 	}
 
