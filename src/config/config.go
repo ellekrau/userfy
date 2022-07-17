@@ -51,9 +51,9 @@ func LoadEnvironmentVariables() {
 	}
 
 	// Loads data security variables
-	if err := loadDataSecurityConfig(); err != nil {
-		log.Fatal(err)
-	}
+	//if err := loadDataSecurityConfig(); err != nil {
+	//	log.Fatal(err)
+	//}
 
 	// Loads database variables
 	if _, err := env.UnmarshalFromEnviron(&Database); err != nil {
@@ -82,14 +82,14 @@ func loadUserDataConfig() error {
 	return nil
 }
 
-func loadDataSecurityConfig() error {
-	if _, err := env.UnmarshalFromEnviron(&DataSecurity); err != nil {
-		return err
-	}
-
-	if err := validateDataSecurityKey(); err != nil {
-		return err
-	}
-
-	return nil
-}
+//func loadDataSecurityConfig() error {
+//	if _, err := env.UnmarshalFromEnviron(&DataSecurity); err != nil {
+//		return err
+//	}
+//
+//	if err := validateDataSecurityKey(); err != nil {
+//		return err
+//	}
+//
+//	return nil
+//}

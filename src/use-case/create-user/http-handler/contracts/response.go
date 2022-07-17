@@ -1,9 +1,9 @@
 package contracts
 
 type Response struct {
-	Message string `json:"message"`
+	ID string `json:"ID"`
 }
 
-func NewResponse(message string) Response {
-	return Response{Message: message}
+func NewResponse(id string) Response {
+	return Response{ID: id}
 }

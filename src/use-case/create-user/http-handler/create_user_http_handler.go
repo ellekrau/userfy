@@ -1,6 +1,7 @@
 package createuserhttphandler
 
 import (
+	"fmt"
 	"github.com/ellekrau/mercafacil/use-case/create-user/http-handler/contracts"
 	createuserservices "github.com/ellekrau/mercafacil/use-case/create-user/services"
 	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
@@ -16,7 +17,11 @@ func CreateUserHttpHandler(c *gin.Context) {
 	}
 
 	serviceInput := createuserservicecontracts.NewCreateUserServiceInput(request.Name, request.Cellphone)
-	createuserservices.CreateUser(c, serviceInput)
+	user, serviceErr := createuserservices.CreateUser(serviceInput)
+	if serviceErr != nil {
+		c.JSON(http.StatusInternalServerError, serviceErr)
+		return
+	}
 
-	c.JSON(http.StatusNotImplemented, contracts.NewResponse("Hello world!"))
+	c.JSON(http.StatusOK, contracts.NewResponse(fmt.Sprint(user.ID)))
 }
