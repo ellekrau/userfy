@@ -11,8 +11,8 @@ import (
 func StartMySQLDatabase() {
 	var err error
 
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
+	connectionString := fmt.Sprintf("mysql:%s@tcp(%s:%s)/%s",
+		config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
 
 	if database, err = sql.Open(config.Database.DB, connectionString); err != nil {
 		log.Fatalln(errDatabaseConnection, err.Error())

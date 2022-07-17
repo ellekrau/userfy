@@ -3,8 +3,6 @@ package database
 import (
 	"database/sql"
 	"github.com/ellekrau/mercafacil/config"
-	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/lib/pq"
 	"log"
 	"strings"
 )
