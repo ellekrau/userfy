@@ -5,7 +5,8 @@
 - [joho/go-dotenv](https://github.com/joho/godotenv)
 - [netflix/go-env](https://github.com/Netflix/go-env)
 - [golang-jwt/jwt](https://github.com/golang-jwt/jwt)
-- [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql)
+- [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql) MySQL DB driver
+- [github.com/lib/pq](https://github.com/lib/pq) Postgres DB driver
 
 # Migrations
 

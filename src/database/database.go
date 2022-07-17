@@ -2,31 +2,31 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/ellekrau/mercafacil/config"
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 	"log"
+	"strings"
 )
 
 var database *sql.DB
 
 var errDatabaseConnection = "database connection error: "
+var errInvalidDatabaseConnection = "invalid database name"
 
 func GetDatabase() *sql.DB {
 	return database
 }
 
 func StartDatabase() {
-	var err error
-
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
-
-	if database, err = sql.Open(config.Database.DB, connectionString); err != nil {
-		log.Fatalln(errDatabaseConnection, err.Error())
-	}
-
-	if err = database.Ping(); err != nil {
-		log.Fatalln(errDatabaseConnection, err.Error())
+	switch strings.ToLower(config.Database.DB) {
+	case "postgres":
+		StartPostgresDatabase()
+		return
+	case "mysql":
+		StartMySQLDatabase()
+		return
+	default:
+		log.Fatalln(errDatabaseConnection, errInvalidDatabaseConnection, " ", config.Database.DB)
 	}
 }
