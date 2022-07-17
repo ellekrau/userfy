@@ -10,7 +10,7 @@ import (
 var database *sql.DB
 
 var errDatabaseConnection = "database connection error: "
-var errInvalidDatabaseConnection = "invalid database name"
+var errInvalidDatabaseConnection = "invalid database name "
 
 func GetDatabase() *sql.DB {
 	return database
@@ -19,12 +19,16 @@ func GetDatabase() *sql.DB {
 func StartDatabase() {
 	switch strings.ToLower(config.Database.DB) {
 	case "postgres":
-		StartPostgresDatabase()
-		return
+		openPostgresDatabase()
+		break
 	case "mysql":
-		StartMySQLDatabase()
-		return
+		openMySQLDatabase()
+		break
 	default:
-		log.Fatalln(errDatabaseConnection, errInvalidDatabaseConnection, " ", config.Database.DB)
+		log.Fatalln(errDatabaseConnection, errInvalidDatabaseConnection, config.Database.DB)
+	}
+
+	if err := database.Ping(); err != nil {
+		log.Fatalln(errDatabaseConnection, err.Error())
 	}
 }

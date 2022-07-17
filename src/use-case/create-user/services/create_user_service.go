@@ -3,7 +3,7 @@ package createuserservices
 import (
 	"github.com/ellekrau/mercafacil/database"
 	"github.com/ellekrau/mercafacil/domain"
-	"github.com/ellekrau/mercafacil/repositories"
+	"github.com/ellekrau/mercafacil/repositories/user-repository"
 	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
 	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
 )
@@ -13,7 +13,7 @@ var errCodeDbCreateUser = "db_create_user"
 func CreateUser(input createuserservicecontracts.CreateUserServiceInput) (domain.User, *customerror.CustomError) {
 	db := database.GetDatabase()
 
-	userRepository := repositories.NewUserRepository(db)
+	userRepository := userrepository.NewUserRepository(db)
 	user := domain.NewUser(input.Name, input.Cellphone)
 
 	if err := userRepository.CreateUser(&user); err != nil {
