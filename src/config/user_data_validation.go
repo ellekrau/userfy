@@ -11,7 +11,7 @@ func validateCellphonePattern() error {
 		return nil
 	}
 
-	patternCellphoneDigits := strings.Count(UserData.CellphonePattern, "0")
+	patternCellphoneDigits := strings.Count(UserData.CellphonePattern, "X")
 	if patternCellphoneDigits == cellphoneDigitsCount {
 		return nil
 	}
