@@ -19,8 +19,8 @@ func GetDatabase() *sql.DB {
 func StartDatabase() {
 	var err error
 
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port)
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
 
 	if database, err = sql.Open(config.Database.DB, connectionString); err != nil {
 		log.Fatalln(errDatabaseConnection, err.Error())

@@ -43,6 +43,14 @@ func TestValidateRequestContract(t *testing.T) {
 			},
 			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'required' tag",
 		},
+		{
+			TestCase: "Cellphone with insufficient digits (10)",
+			Request: Request{
+				Name:      "Name",
+				Cellphone: "1234567890",
+			},
+			ErrorMessage: "Key: 'Request.Cellphone' Error:Field validation for 'Cellphone' failed on the 'len' tag",
+		},
 	}
 
 	for _, tc := range testCases {

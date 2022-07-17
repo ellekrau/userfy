@@ -12,7 +12,7 @@ import (
 func CreateUserHttpHandler(c *gin.Context) {
 	request, err := contracts.CreateRequest(c)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, contracts.NewResponse(err.Error()))
+		c.JSON(http.StatusBadRequest, err)
 		return
 	}
 
@@ -23,5 +23,5 @@ func CreateUserHttpHandler(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, contracts.NewResponse(fmt.Sprint(user.ID)))
+	c.JSON(http.StatusCreated, contracts.NewResponse(fmt.Sprint(user.ID)))
 }
