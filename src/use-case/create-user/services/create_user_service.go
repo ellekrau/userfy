@@ -8,6 +8,8 @@ import (
 	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
 )
 
+var errCodeDbCreateUser = "db_create_user"
+
 func CreateUser(input createuserservicecontracts.CreateUserServiceInput) (domain.User, *customerror.CustomError) {
 	db := database.GetDatabase()
 
@@ -16,7 +18,7 @@ func CreateUser(input createuserservicecontracts.CreateUserServiceInput) (domain
 
 	if err := userRepository.CreateUser(&user); err != nil {
 		return domain.User{}, &customerror.CustomError{
-			Code:    "db_create_user",
+			Code:    errCodeDbCreateUser,
 			Message: err.Error(),
 		}
 	}
