@@ -16,14 +16,14 @@ func CreateRequest(c *gin.Context) (Request, error) {
 		return Request{}, err
 	}
 
-	if err := r.validate(); err != nil {
+	if err := r.validateRequestContract(); err != nil {
 		return Request{}, err
 	}
 
 	return r, nil
 }
 
-func (r Request) validate() error {
+func (r Request) validateRequestContract() error {
 	if err := validator.New().Struct(r); err != nil {
 		return err
 	}

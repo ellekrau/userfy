@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestValidate(t *testing.T) {
+func TestValidateRequestContract(t *testing.T) {
 	testCases := []struct {
 		TestCase     string
 		Request      Request
@@ -46,7 +46,7 @@ func TestValidate(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		err := tc.Request.validate()
+		err := tc.Request.validateRequestContract()
 		assert.Equal(t, tc.ErrorMessage, err.Error(), tc.TestCase)
 	}
 }
