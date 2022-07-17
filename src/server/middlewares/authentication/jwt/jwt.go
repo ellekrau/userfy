@@ -8,12 +8,12 @@ import (
 
 func GenerateJWTToken() (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, nil)
-	return token.SignedString([]byte(config.Authentication.Key))
+	return token.SignedString([]byte(config.Authentication.JWTKey))
 }
 
 func ValidateJWTToken(token string) error {
 	keyFunc := func(token *jwt.Token) (interface{}, error) {
-		return []byte(config.Authentication.Key), nil
+		return []byte(config.Authentication.JWTKey), nil
 	}
 
 	_, err := jwt.Parse(token, keyFunc)

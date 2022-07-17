@@ -14,7 +14,11 @@ type serviceConfig struct {
 }
 
 type authenticationConfig struct {
-	Key string `env:"KEY,required=true"`
+	JWTKey string `env:"JWT_KEY,required=true"`
+}
+
+type dataSecurityConfig struct {
+	SecurityDataKey string `env:"DATA_SECURITY_KEY,required=true"`
 }
 
 type databaseConfig struct {
@@ -30,18 +34,24 @@ type userDataConfig struct {
 var (
 	Service        serviceConfig
 	Authentication authenticationConfig
+	DataSecurity   dataSecurityConfig
 	Database       databaseConfig
 	UserData       userDataConfig
 )
 
 func LoadEnvironmentVariables() {
-	// Loads service variables
+	// Loads services variables
 	if _, err := env.UnmarshalFromEnviron(&Service); err != nil {
 		log.Fatal(err)
 	}
 
 	// Loads authentication variables
 	if _, err := env.UnmarshalFromEnviron(&Authentication); err != nil {
+		log.Fatal(err)
+	}
+
+	// Loads data security variables
+	if err := loadDataSecurityConfig(); err != nil {
 		log.Fatal(err)
 	}
 
@@ -66,6 +76,18 @@ func loadUserDataConfig() error {
 	}
 
 	if err := validateNamePattern(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func loadDataSecurityConfig() error {
+	if _, err := env.UnmarshalFromEnviron(&DataSecurity); err != nil {
+		return err
+	}
+
+	if err := validateDataSecurityKey(); err != nil {
 		return err
 	}
 
