@@ -33,21 +33,30 @@ var (
 )
 
 func LoadEnvironmentVariables() {
-	// Load database config variables
+	// Loads service variables
+	if _, err := env.UnmarshalFromEnviron(&Service); err != nil {
+		log.Fatal(err)
+	}
+
+	// Loads database variables
 	if _, err := env.UnmarshalFromEnviron(&Database); err != nil {
 		log.Fatal(err)
 	}
 
-	// Load user data variables
+	// Loads user data variables
 	if _, err := env.UnmarshalFromEnviron(&UserData); err != nil {
 		log.Fatal(err)
 	}
 
 	// Validates if cellphone pattern is a valid format
-	validateCellphonePattern()
+	if err := validateCellphonePattern(); err != nil {
+		log.Fatal(err)
+	}
 
-	// Validates if NamePattern is an expected value
-	validateNamePattern()
+	// Validates if NamePatternEnum is an expected value
+	if err := validateNamePattern(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func validateCellphonePattern() error {

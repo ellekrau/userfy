@@ -1,25 +1,29 @@
 package namepatternenum
 
-type NamePattern string
+import "strings"
+
+type NamePatternEnum string
 
 const (
-	lowercase NamePattern = "lowercase"
-	uppercase NamePattern = "uppercase"
-	title     NamePattern = "title"
+	LowerCase NamePatternEnum = "lowercase"
+	UpperCase NamePatternEnum = "uppercase"
 )
 
-func (n NamePattern) ToString() string {
+func (n NamePatternEnum) ToString() string {
 	return string(n)
 }
 
-func IsNamePatternEnumValue(input string) bool {
-	types := []string{lowercase.ToString(), uppercase.ToString(), title.ToString()}
-
-	for _, t := range types {
-		if t == input {
-			return true
-		}
+func NewNamePatternEnum(input string) NamePatternEnum {
+	switch strings.ToLower(input) {
+	case LowerCase.ToString():
+		return LowerCase
+	case UpperCase.ToString():
+		return UpperCase
+	default:
+		return ""
 	}
+}
 
-	return false
+func IsNamePatternEnumValue(input string) bool {
+	return NewNamePatternEnum(input) != ""
 }
