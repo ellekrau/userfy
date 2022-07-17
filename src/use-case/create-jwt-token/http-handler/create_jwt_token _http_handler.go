@@ -2,7 +2,7 @@ package http_handler
 
 import (
 	"github.com/ellekrau/mercafacil/server/middlewares/authentication/jwt"
-	"github.com/ellekrau/mercafacil/use-case/generate-jwt/http-handler/contracts"
+	"github.com/ellekrau/mercafacil/use-case/create-jwt-token/http-handler/contracts"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
