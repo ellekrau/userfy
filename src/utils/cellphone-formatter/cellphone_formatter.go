@@ -11,11 +11,11 @@ func FormatCellphone(inputCellphone string) string {
 		return inputCellphone
 	}
 
-	outputCellphone := config.UserData.CellphonePattern
+	outputCellphone := strings.ToUpper(config.UserData.CellphonePattern)
 	cellphoneDigits := strings.Split(inputCellphone, "")
 
 	for i := 0; i < len(cellphoneDigits); i++ {
-		outputCellphone = strings.Replace(outputCellphone, "0", cellphoneDigits[i], 1)
+		outputCellphone = strings.Replace(outputCellphone, "X", cellphoneDigits[i], 1)
 	}
 
 	return outputCellphone

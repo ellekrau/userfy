@@ -12,25 +12,25 @@ func TestFormatCellphone(t *testing.T) {
 		Expected string
 	}{
 		{
-			Pattern:  "+00 (00) 00000-0000",
-			Expected: "+55 (41) 99433-6786",
+			Pattern:  "+XX (XX) XXXXX-XXXX",
+			Expected: "+55 (41) 99433-0786",
 		},
 		{
-			Pattern:  "+00(00)00000-0000",
-			Expected: "+55(41)99433-6786",
+			Pattern:  "+XX(XX)XXXXX-XXXX",
+			Expected: "+55(41)99433-0786",
 		},
 		{
-			Pattern:  "00(00)000000000",
-			Expected: "55(41)994336786",
+			Pattern:  "XX(XX)XXXXXXXXX",
+			Expected: "55(41)994330786",
 		},
 		{
 			Pattern:  "",
-			Expected: "5541994336786",
+			Expected: "5541994330786",
 		},
 	}
 
 	for _, tc := range testCases {
 		config.UserData.CellphonePattern = tc.Pattern
-		assert.Equal(t, tc.Expected, FormatCellphone("5541994336786"))
+		assert.Equal(t, tc.Expected, FormatCellphone("5541994330786"))
 	}
 }
