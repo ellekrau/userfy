@@ -34,7 +34,6 @@ Migration package:
 `go install -tags 'mysql,postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest`
 
 # Migrations
-## Steps
 
 Run MySQL initial migration:
 
