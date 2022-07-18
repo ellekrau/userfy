@@ -1,3 +1,6 @@
+Complete documentation (in Portuguese):
+[here](https://ellekrau91.gitbook.io/teste-tecnico-mercafacil/)
+
 # .env
 
 Put it on projects root
