@@ -1,9 +1,9 @@
 package createuserservices
 
 import (
-	"github.com/ellekrau/mercafacil/database"
+	"github.com/ellekrau/mercafacil/database/database-config"
+	"github.com/ellekrau/mercafacil/database/repositories/user-repository"
 	"github.com/ellekrau/mercafacil/domain"
-	"github.com/ellekrau/mercafacil/repositories/user-repository"
 	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
 	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
 )
