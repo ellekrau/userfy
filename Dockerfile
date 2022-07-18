@@ -8,8 +8,8 @@ RUN go install -tags 'mysql,postgres' github.com/golang-migrate/migrate/v4/cmd/m
     && go mod download && go mod verify
 
 COPY . .
-RUN cd src && go build -v
+RUN cd src && go build -v -o /app
 
 EXPOSE $PORT
 
-ENTRYPOINT ["tail","-f","/dev/null"]
+CMD ["./mercafacil"]
