@@ -1,5 +1,7 @@
 # .env
 
+Put it on projects root
+
 ````
 PORT=
 
@@ -33,21 +35,14 @@ Migration package:
 
 # Migrations
 ## Steps
-Connect to app container:
-
-`docker exec -it app sh`
 
 Run MySQL initial migration:
 
-`migrate -path src/database/migrations/mysql -database "mysql://admin:admin@tcp(mysql:3306)/admin" --verbose up`
+`docker exec -it app migrate -path src/database/migrations/mysql -database "mysql://admin:admin@tcp(mysql:3306)/admin" --verbose up`
 
 Run Postgres initial migration:
 
-`migrate -path src/database/migrations/postgres -database "postgres://admin:admin@postgresql:5432/admin?sslmode=disable" --verbose up`
-
-Execute the application:
-
-`cd src && ./mercafacil`
+`docker exec -it app migrate -path src/database/migrations/postgres -database "postgres://admin:admin@postgresql:5432/admin?sslmode=disable" --verbose up`
 
 # Containers connection
 ### Application
