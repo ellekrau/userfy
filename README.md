@@ -1,5 +1,7 @@
 # .env
 
+Put it on projects root
+
 ````
 PORT=
 
