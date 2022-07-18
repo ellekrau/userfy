@@ -1,7 +1,7 @@
 package authmiddleware
 
 import (
-	"github.com/ellekrau/mercafacil/server/middlewares/authentication/jwt"
+	"github.com/ellekrau/mercafacil/server/middlewares/auth/jwt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"

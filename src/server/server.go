@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"github.com/ellekrau/mercafacil/config"
-	authmiddleware "github.com/ellekrau/mercafacil/server/middlewares/authentication"
+	authmiddleware "github.com/ellekrau/mercafacil/server/middlewares/auth"
 	createuserhttphandler "github.com/ellekrau/mercafacil/use-case/create-user/http-handler"
 	generatejwthttphandler "github.com/ellekrau/mercafacil/use-case/get-jwt-token/http-handler"
 	"github.com/gin-gonic/gin"

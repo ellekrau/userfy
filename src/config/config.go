@@ -49,7 +49,7 @@ func LoadEnvironmentVariables() {
 		log.Fatal(err)
 	}
 
-	// Loads authentication variables
+	// Loads auth variables
 	if _, err := env.UnmarshalFromEnviron(&Authentication); err != nil {
 		log.Fatal(err)
 	}
