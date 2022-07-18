@@ -1,3 +1,21 @@
+# .env
+
+````
+PORT=
+
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+
+CELLPHONE_PATTERN=
+NAME_PATTERN=
+
+JWT_KEY=
+DATA_SECURITY_KEY=
+````
+
+
 # Dependencies
 
 - [gin-gonic/gin](https://github.com/gin-gonic/gin) 
