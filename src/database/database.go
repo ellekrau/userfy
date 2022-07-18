@@ -7,10 +7,11 @@ import (
 	"strings"
 )
 
-var database *sql.DB
-
-var errDatabaseConnection = "database connection error: "
-var errInvalidDatabaseConnection = "invalid database name "
+var (
+	database                     *sql.DB
+	errDatabaseConnection        = "database connection error: "
+	errInvalidDatabaseConnection = "invalid database name "
+)
 
 func GetDatabase() *sql.DB {
 	return database

@@ -18,18 +18,23 @@ func TestValidateCellphonePattern(t *testing.T) {
 			Error:            errors.New(errInvalidCellphonePattern),
 		},
 		{
-			TestCase:         "CellphonePattern without enough 0s (6)",
-			CellphonePattern: "000000",
+			TestCase:         "CellphonePattern without enough Xs (6)",
+			CellphonePattern: "XXXXXX",
 			Error:            errors.New(errInvalidCellphonePattern),
 		},
 		{
 			TestCase:         "CellphonePattern with too many 0s (14)",
-			CellphonePattern: "00000000000000",
+			CellphonePattern: "XXXXXXXXXXXXXX",
 			Error:            errors.New(errInvalidCellphonePattern),
 		},
 		{
 			TestCase:         "CellphonePattern with empty value",
 			CellphonePattern: "",
+			Error:            nil,
+		},
+		{
+			TestCase:         "CellphonePattern with empty value",
+			CellphonePattern: "XXXXXXXXXXXXX",
 			Error:            nil,
 		},
 	}
