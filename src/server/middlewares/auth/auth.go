@@ -1,7 +1,7 @@
 package authmiddleware
 
 import (
-	"github.com/ellekrau/mercafacil/server/middlewares/auth/jwt"
+	"github.com/ellekrau/mercafacil/utils/jwt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
@@ -23,6 +23,13 @@ func Auth() gin.HandlerFunc {
 		if splitToken[0] != "Bearer" {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, newResponse(invalidTokenMessage))
 			return
+		}
+
+		if customClaims, err := jwt.ValidateJWTTokenWithKey(splitToken[1]); err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, newResponse(err.Error()))
+			return
+		} else {
+			c.Set("key", customClaims.Key)
 		}
 
 		if err := jwt.ValidateJWTToken(splitToken[1]); err != nil {
