@@ -4,12 +4,10 @@ WORKDIR /app
 
 COPY src/go.mod ./
 COPY src/go.sum ./
-RUN go install -tags 'mysql,postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest \
-    && go mod download && go mod verify
 
 COPY . .
 RUN cd src && go build -v -o /app
 
 EXPOSE $PORT
 
-CMD ["./mercafacil"]
+CMD ["./userfy"]

@@ -32,20 +32,6 @@ DATA_SECURITY_KEY=
 - [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql) MySQL DB driver
 - [github.com/lib/pq](https://github.com/lib/pq) Postgres DB driver
 
-Migration package:
-
-`go install -tags 'mysql,postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest`
-
-# Migrations
-
-Run MySQL initial migration:
-
-`docker exec -it app migrate -path src/database/migrations/mysql -database "mysql://admin:admin@tcp(mysql:3306)/admin" --verbose up`
-
-Run Postgres initial migration:
-
-`docker exec -it app migrate -path src/database/migrations/postgres -database "postgres://admin:admin@postgresql:5432/admin?sslmode=disable" --verbose up`
-
 # Containers connection
 ### Application
 `docker exec -it app sh`
