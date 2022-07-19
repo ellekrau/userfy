@@ -1,0 +1,32 @@
+{
+    "clients": [
+        {
+            "key": "96f763a4-4998-405d-ab0d-b8cd9c7c9889",
+            "name": "Macapa",
+            "userConfig": {
+                "namePattern": "uppercase",
+                "cellphonePattern": "+XX (XX) XXXXX-XXXX"
+            },
+            "database": {
+                "name": "",
+                "host": "",
+                "user": "",
+                "password": ""
+            }
+        },
+        {
+            "key": "b759379b-0579-41d9-9752-de0c31308090",
+            "name": "postgres",
+            "userConfig": {
+                "namePattern": "",
+                "cellphonePattern": ""
+            },
+            "database": {
+                "name": "",
+                "host": "",
+                "user": "",
+                "password": ""
+            }
+        }
+    ]
+}
