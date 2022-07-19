@@ -19,7 +19,7 @@ func NewUserRepository(db *sql.DB) *userRepository {
 }
 
 func (ur userRepository) CreateUser(user *domain.User) (err error) {
-	switch strings.ToLower(config.Database.DB) {
+	switch strings.ToLower(config.OldDatabase.DB) {
 	case "postgres":
 		return createUserPostgres(ur.db, user)
 	case "mysql":

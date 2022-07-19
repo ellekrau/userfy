@@ -4,15 +4,17 @@
             "key": "96f763a4-4998-405d-ab0d-b8cd9c7c9889",
             "name": "Macapa",
             "database": {
+                "database": "mysql",
                 "name": "",
                 "host": "",
+                "port": "",
                 "user": "",
                 "password": ""
             },
-            "dataConfig": {
+            "dataPattern": {
                 "user": {
-                    "namePattern": "uppercase",
-                    "cellphonePattern": "+XX (XX) XXXXX-XXXX"
+                    "name": "uppercase",
+                    "cellphone": "+XX (XX) XXXXX-XXXX"
                 }
             }
         },
@@ -20,15 +22,17 @@
             "key": "b759379b-0579-41d9-9752-de0c31308090",
             "name": "postgres",
             "database": {
+                "database": "postgres",
                 "name": "",
                 "host": "",
+                "port": "",
                 "user": "",
                 "password": ""
             },
-            "dataConfig": {
+            "dataPattern": {
                 "user": {
-                    "namePattern": "",
-                    "cellphonePattern": ""
+                    "name": "",
+                    "cellphone": ""
                 }
             }
         }

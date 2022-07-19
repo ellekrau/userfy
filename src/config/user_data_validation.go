@@ -7,11 +7,11 @@ import (
 )
 
 func validateCellphonePattern() error {
-	if UserData.CellphonePattern == "" {
+	if OldUserData.CellphonePattern == "" {
 		return nil
 	}
 
-	patternCellphoneDigits := strings.Count(UserData.CellphonePattern, "X")
+	patternCellphoneDigits := strings.Count(OldUserData.CellphonePattern, "X")
 	if patternCellphoneDigits == cellphoneDigitsCount {
 		return nil
 	}
@@ -20,11 +20,11 @@ func validateCellphonePattern() error {
 }
 
 func validateNamePattern() error {
-	if UserData.NamePattern == "" {
+	if OldUserData.NamePattern == "" {
 		return nil
 	}
 
-	if namepatternenum.IsNamePatternEnumValue(UserData.NamePattern) {
+	if namepatternenum.IsNamePatternEnumValue(OldUserData.NamePattern) {
 		return nil
 	}
 

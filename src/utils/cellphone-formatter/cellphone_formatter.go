@@ -7,11 +7,11 @@ import (
 
 func FormatCellphone(inputCellphone string) string {
 	// If the CellphonePattern variable is empty just returns the cellphone input value
-	if config.UserData.CellphonePattern == "" {
+	if config.OldUserData.CellphonePattern == "" {
 		return inputCellphone
 	}
 
-	outputCellphone := strings.ToUpper(config.UserData.CellphonePattern)
+	outputCellphone := strings.ToUpper(config.OldUserData.CellphonePattern)
 	cellphoneDigits := strings.Split(inputCellphone, "")
 
 	for i := 0; i < len(cellphoneDigits); i++ {

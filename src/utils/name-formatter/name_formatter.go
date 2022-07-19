@@ -8,11 +8,11 @@ import (
 
 func FormatName(inputName string) string {
 	// If the NamePatternEnum variable is empty just returns the name input value
-	if config.UserData.NamePattern == "" {
+	if config.OldUserData.NamePattern == "" {
 		return inputName
 	}
 
-	switch namepatternenum.NewNamePatternEnum(config.UserData.NamePattern) {
+	switch namepatternenum.NewNamePatternEnum(config.OldUserData.NamePattern) {
 	case namepatternenum.UpperCase:
 		return strings.ToUpper(inputName)
 	case namepatternenum.LowerCase:

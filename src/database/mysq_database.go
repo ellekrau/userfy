@@ -10,7 +10,7 @@ import (
 
 func openMySQLDatabase() {
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
+		config.OldDatabase.User, config.OldDatabase.Password, config.OldDatabase.Host, config.OldDatabase.Port, config.OldDatabase.Name)
 
 	var err error
 	if database, err = sql.Open("mysql", connectionString); err != nil {

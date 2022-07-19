@@ -18,7 +18,7 @@ func GetDatabase() *sql.DB {
 }
 
 func StartDatabase() {
-	switch strings.ToLower(config.Database.DB) {
+	switch strings.ToLower(config.OldDatabase.DB) {
 	case "postgres":
 		openPostgresDatabase()
 		break
@@ -26,7 +26,7 @@ func StartDatabase() {
 		openMySQLDatabase()
 		break
 	default:
-		log.Fatalln(errDatabaseConnection, errInvalidDatabaseConnection, config.Database.DB)
+		log.Fatalln(errDatabaseConnection, errInvalidDatabaseConnection, config.OldDatabase.DB)
 	}
 
 	if err := database.Ping(); err != nil {

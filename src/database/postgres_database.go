@@ -10,7 +10,7 @@ import (
 
 func openPostgresDatabase() {
 	connectionString := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
+		config.OldDatabase.User, config.OldDatabase.Password, config.OldDatabase.Host, config.OldDatabase.Port, config.OldDatabase.Name)
 
 	var err error
 	if database, err = sql.Open("postgres", connectionString); err != nil {

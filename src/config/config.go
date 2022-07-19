@@ -39,8 +39,8 @@ var (
 	Service        serviceConfig
 	Authentication authenticationConfig
 	DataSecurity   dataSecurityConfig
-	Database       databaseConfig
-	UserData       userDataConfig
+	OldDatabase    databaseConfig
+	OldUserData    userDataConfig
 )
 
 func LoadEnvironmentVariables() {
@@ -60,7 +60,7 @@ func LoadEnvironmentVariables() {
 	//}
 
 	// Loads database variables
-	if _, err := env.UnmarshalFromEnviron(&Database); err != nil {
+	if _, err := env.UnmarshalFromEnviron(&OldDatabase); err != nil {
 		log.Fatal(err)
 	}
 
@@ -71,7 +71,7 @@ func LoadEnvironmentVariables() {
 }
 
 func loadUserDataConfig() error {
-	if _, err := env.UnmarshalFromEnviron(&UserData); err != nil {
+	if _, err := env.UnmarshalFromEnviron(&OldUserData); err != nil {
 		return err
 	}
 

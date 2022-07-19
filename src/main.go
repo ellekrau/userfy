@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	config.LoadConfig()
+
 	godotenv.Load("./../.env")
 	config.LoadEnvironmentVariables()
 	database.StartDatabase()

@@ -40,7 +40,7 @@ func TestValidateCellphonePattern(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		UserData.CellphonePattern = tc.CellphonePattern
+		OldUserData.CellphonePattern = tc.CellphonePattern
 		assert.Equal(t, tc.Error, validateCellphonePattern(), tc.TestCase)
 	}
 }
