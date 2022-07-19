@@ -13,7 +13,7 @@ func openPostgresDatabase() {
 		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
 
 	var err error
-	if database, err = sql.Open(config.Database.DB, connectionString); err != nil {
+	if database, err = sql.Open("postgres", connectionString); err != nil {
 		log.Fatalln(errDatabaseConnection, err.Error())
 	}
 }
