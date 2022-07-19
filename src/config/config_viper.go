@@ -6,19 +6,26 @@ import (
 	"os"
 )
 
+var clientsConfig Config
+
+func GetClientsConfig() Config {
+	return clientsConfig
+}
+
 func LoadConfig() {
 	v := viper.New()
 	dir, _ := os.Getwd()
 	v.SetConfigFile(dir + "../../config/clients.json")
 
 	if err := v.ReadInConfig(); err != nil {
-		log.Fatalln(err)
+		log.Fatalln(err) // TODO improve error message
 	}
 
-	var clientsConfig Config
 	if err := v.Unmarshal(&clientsConfig); err != nil {
-		log.Fatalln(err)
+		log.Fatalln(err) // TODO improve error message
 	}
+
+	// TODO validate
 }
 
 type Config struct {
