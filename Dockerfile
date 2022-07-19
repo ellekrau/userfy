@@ -10,4 +10,4 @@ RUN cd src && go build -v -o /app
 
 EXPOSE $PORT
 
-CMD ["./userfy"]
+CMD ["./mercafacil"]

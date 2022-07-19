@@ -5,11 +5,11 @@
             "name": "Macapa",
             "database": {
                 "database": "mysql",
-                "name": "",
-                "host": "",
-                "port": "",
-                "user": "",
-                "password": ""
+                "name": "admin",
+                "host": "localhost",
+                "port": "3306",
+                "user": "admin",
+                "password": "admin"
             },
             "dataPattern": {
                 "user": {
@@ -23,11 +23,11 @@
             "name": "postgres",
             "database": {
                 "database": "postgres",
-                "name": "",
-                "host": "",
-                "port": "",
-                "user": "",
-                "password": ""
+                "name": "admin",
+                "host": "localhost",
+                "port": "5432",
+                "user": "admin",
+                "password": "admin"
             },
             "dataPattern": {
                 "user": {

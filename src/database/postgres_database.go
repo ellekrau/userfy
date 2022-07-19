@@ -17,3 +17,17 @@ func openPostgresDatabase() {
 		log.Fatalln(errDatabaseConnection, err.Error())
 	}
 }
+
+func openPostgresDatabaseWithReturn(dbConfig config.Database) *sql.DB {
+	connectionString := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
+
+	var connection *sql.DB
+	var err error
+
+	if connection, err = sql.Open("postgres", connectionString); err != nil {
+		log.Fatalln(errDatabaseConnection, err.Error())
+	}
+
+	return connection
+}

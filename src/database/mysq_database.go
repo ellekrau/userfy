@@ -17,3 +17,17 @@ func openMySQLDatabase() {
 		log.Fatalln(errDatabaseConnection, err.Error())
 	}
 }
+
+func openMySQLDatabaseWithReturn(dbConfig config.Database) *sql.DB {
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
+
+	var connection *sql.DB
+	var err error
+
+	if connection, err = sql.Open("mysql", connectionString); err != nil {
+		log.Fatalln(errDatabaseConnection, err.Error())
+	}
+
+	return connection
+}

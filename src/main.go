@@ -12,6 +12,8 @@ func main() {
 	config.LoadConfig()
 
 	godotenv.Load("./../.env")
+	database.StartDatabases()
+
 	config.LoadEnvironmentVariables()
 	database.StartDatabase()
 	server.RunServer()

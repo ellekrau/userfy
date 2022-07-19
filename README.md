@@ -24,6 +24,7 @@ DATA_SECURITY_KEY=
 # Dependencies
 
 - [gin-gonic/gin](https://github.com/gin-gonic/gin) 
+- [spf13/viper](https://github.com/spf13/viper)
 - [github.com/go-playground/validator/v10](https://github.com/go-playground/validator)
 - [stretchr/Testify](https://github.com/stretchr/testify)
 - [joho/go-dotenv](https://github.com/joho/godotenv)
