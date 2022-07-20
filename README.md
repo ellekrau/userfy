@@ -7,17 +7,7 @@ Put it on projects root
 
 ````
 PORT=
-
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-
-CELLPHONE_PATTERN=
-NAME_PATTERN=
-
 JWT_KEY=
-DATA_SECURITY_KEY=
 ````
 
 
