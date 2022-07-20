@@ -21,6 +21,20 @@ JWT_KEY=
 - [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql) MySQL DB driver
 - [github.com/lib/pq](https://github.com/lib/pq) Postgres DB driver
 
+# Setup
+
+### Build
+`make build`
+
+### Initial seed
+`make seed`
+
+### Up
+`make up`
+
+### Down
+`make down`
+
 # Containers connection
 ### Application
 `docker exec -it app sh`
