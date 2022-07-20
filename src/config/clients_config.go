@@ -13,9 +13,9 @@ func GetClientsConfig() Config {
 	return clientsConfig
 }
 
-func LoadConfig() {
+func LoadClientsConfig() {
 	v := viper.New()
-	dir, _ := os.Getwd()
+	dir, _ := os.Getwd() // TODO improve
 	v.SetConfigFile(dir + "../../config/clients.json")
 
 	if err := v.ReadInConfig(); err != nil {

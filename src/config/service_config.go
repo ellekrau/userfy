@@ -23,7 +23,7 @@ var (
 	//DataSecurity   dataSecurityConfig
 )
 
-func LoadEnvironmentVariables() {
+func LoadServiceConfig() {
 	// Loads services variables
 	if _, err := env.UnmarshalFromEnviron(&Service); err != nil {
 		log.Fatal(err)

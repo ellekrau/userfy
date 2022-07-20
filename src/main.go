@@ -6,14 +6,20 @@ import (
 	"github.com/ellekrau/mercafacil/server"
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv/autoload"
+	"log"
 )
 
 func main() {
-	config.LoadConfig()
+	loadEnvironmentVariables()
+	config.LoadServiceConfig()
+	config.LoadClientsConfig()
+
 	database.LoadDatabaseClientKeys()
-
-	godotenv.Load("./../.env")
-
-	config.LoadEnvironmentVariables()
 	server.RunServer()
+}
+
+func loadEnvironmentVariables() {
+	if err := godotenv.Load("./../.env"); err != nil {
+		log.Fatalln("error in load .env")
+	}
 }
