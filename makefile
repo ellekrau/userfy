@@ -17,4 +17,7 @@ enter_mysql:
 enter_postgres:
 	docker exec -it mercafacil_postgresql psql -d admin -U admin
 
+enter_userfy:
+	docker exec -it userfy sh
+
 
