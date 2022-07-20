@@ -13,14 +13,14 @@ type authenticationConfig struct {
 	JWTKey string `env:"JWT_KEY,required=true"`
 }
 
-//type dataSecurityConfig struct {
-//	SecurityDataKey string `env:"DATA_SECURITY_KEY,required=true"`
-//}
+type dataSecurityConfig struct {
+	SecurityDataKey string `env:"DATA_SECURITY_KEY,required=true"`
+}
 
 var (
 	Service        serviceConfig
 	Authentication authenticationConfig
-	//DataSecurity   dataSecurityConfig
+	DataSecurity   dataSecurityConfig
 )
 
 func LoadServiceConfig() {

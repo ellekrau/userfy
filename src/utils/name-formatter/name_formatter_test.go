@@ -30,7 +30,9 @@ func TestFormatName(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		config.OldUserData.NamePattern = tc.namePattern
-		assert.Equal(t, tc.expectedResult, FormatName("Testing the function"), tc.testCase)
+		userConfig := config.User{
+			Name: tc.namePattern,
+		}
+		assert.Equal(t, tc.expectedResult, FormatName(userConfig, "Testing the function"), tc.testCase)
 	}
 }

@@ -30,7 +30,10 @@ func TestFormatCellphone(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		config.OldUserData.CellphonePattern = tc.Pattern
-		assert.Equal(t, tc.Expected, FormatCellphone("5541994330786"))
+		userConfig := config.User{
+			Cellphone: tc.Pattern,
+		}
+
+		assert.Equal(t, tc.Expected, FormatCellphone(userConfig, "5541994330786"))
 	}
 }
