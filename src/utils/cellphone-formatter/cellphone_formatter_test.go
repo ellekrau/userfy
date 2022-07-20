@@ -1,7 +1,7 @@
 package cellphoneformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config/client-config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

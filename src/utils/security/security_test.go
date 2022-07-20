@@ -1,7 +1,7 @@
 package security
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/userfy/config"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

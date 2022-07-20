@@ -1,8 +1,8 @@
 package http_handler
 
 import (
-	"github.com/ellekrau/mercafacil/use-case/get-jwt-token/http-handler/contracts"
-	"github.com/ellekrau/mercafacil/utils/jwt"
+	"github.com/ellekrau/userfy/use-case/get-jwt-token/http-handler/contracts"
+	"github.com/ellekrau/userfy/utils/jwt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

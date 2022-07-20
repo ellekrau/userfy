@@ -2,10 +2,10 @@ package createuserhttphandler
 
 import (
 	"fmt"
-	"github.com/ellekrau/mercafacil/use-case/create-user/http-handler/contracts"
-	createuserservices "github.com/ellekrau/mercafacil/use-case/create-user/services"
-	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
-	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
+	"github.com/ellekrau/userfy/use-case/create-user/http-handler/contracts"
+	createuserservices "github.com/ellekrau/userfy/use-case/create-user/services"
+	createuserservicecontracts "github.com/ellekrau/userfy/use-case/create-user/services/contracts"
+	customerror "github.com/ellekrau/userfy/utils/custom-error"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

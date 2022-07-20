@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config/client-config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	_ "github.com/go-sql-driver/mysql"
 )
 

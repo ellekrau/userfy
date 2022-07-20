@@ -1,8 +1,8 @@
 package nameformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config/client-config"
-	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	namepatternenum "github.com/ellekrau/userfy/utils/name-pattern-enum"
 	"strings"
 )
 

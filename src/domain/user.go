@@ -1,9 +1,9 @@
 package domain
 
 import (
-	"github.com/ellekrau/mercafacil/config/client-config"
-	cellphoneformatter "github.com/ellekrau/mercafacil/utils/cellphone-formatter"
-	nameformatter "github.com/ellekrau/mercafacil/utils/name-formatter"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	cellphoneformatter "github.com/ellekrau/userfy/utils/cellphone-formatter"
+	nameformatter "github.com/ellekrau/userfy/utils/name-formatter"
 )
 
 type User struct {

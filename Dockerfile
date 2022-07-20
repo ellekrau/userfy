@@ -14,4 +14,4 @@ COPY .env /app
 
 EXPOSE $PORT
 
-CMD ["./mercafacil"]
+CMD ["./userfy"]

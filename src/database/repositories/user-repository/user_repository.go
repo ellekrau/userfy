@@ -3,8 +3,8 @@ package userrepository
 import (
 	"database/sql"
 	"errors"
-	"github.com/ellekrau/mercafacil/config/client-config"
-	"github.com/ellekrau/mercafacil/domain"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	"github.com/ellekrau/userfy/domain"
 	"strings"
 )
 

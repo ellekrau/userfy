@@ -3,25 +3,32 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config/client-config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"strings"
 )
 
-var (
-	clientsDBConnections map[string]*sql.DB
-)
+var clientsDBConnections clientsDBConnectionsThreadSafeMap
 
-func LoadClientsDatabaseConnectionKeys() {
-	clientsDBConnections = make(map[string]*sql.DB)
-	for _, client := range clientconfig.GetClientsConfig().Clients {
-		clientsDBConnections[client.Key] = nil
+func LoadClientDBConnections() {
+	// Used to avoid race condition in map read/write
+	clientsDBConnections = clientsDBConnectionsThreadSafeMap{
+		dbConnections: make(map[string]*sql.DB),
 	}
 }
 
-func StartDatabaseByClientKey(clientKey string) (err error) {
+func GetDatabaseByClientKey(clientKey string) (*sql.DB, error) {
+	db, err := clientsDBConnections.getByClientKey(clientKey)
+	if err != nil {
+		return nil, fmt.Errorf("get database by client key error: %v", err)
+	}
+
+	return db, nil
+}
+
+func startDatabaseByClientKey(clientKey string) (dbConnection *sql.DB, err error) {
 	var client clientconfig.Client
 	if client, err = clientconfig.GetClient(clientKey); err != nil {
-		return fmt.Errorf("start database by client error: %v", err)
+		return nil, fmt.Errorf("start database by client error: client config not found: %v", err)
 	}
 
 	var connection *sql.DB
@@ -33,29 +40,16 @@ func StartDatabaseByClientKey(clientKey string) (err error) {
 		connection, err = openMySQLDatabase(client.Database)
 		break
 	default:
-		return fmt.Errorf("start database by client error: client key['%s'] not configured", clientKey)
+		return nil, fmt.Errorf("start database by client error: client key['%s'] not configured", clientKey)
 	}
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	if err = connection.Ping(); err != nil {
-		return fmt.Errorf("start databse by client key error: database ping error key['%s'] err: %v", clientKey, err)
+		return nil, fmt.Errorf("start database by client key error: database ping error key['%s'] err: %v", clientKey, err)
 	}
 
-	clientsDBConnections[client.Key] = connection
-	return nil
-}
-
-func GetDatabaseByClientKey(clientKey string) (*sql.DB, error) {
-	if clientsDBConnections[clientKey] != nil {
-		return clientsDBConnections[clientKey], nil
-	}
-
-	if err := StartDatabaseByClientKey(clientKey); err != nil {
-		return nil, fmt.Errorf("get database by client key error key['%s'] error: %v", clientKey, err)
-	}
-
-	return clientsDBConnections[clientKey], nil
+	return connection, nil
 }

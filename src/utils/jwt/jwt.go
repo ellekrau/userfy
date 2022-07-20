@@ -2,7 +2,7 @@ package jwt
 
 import (
 	"errors"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/userfy/config"
 	"github.com/golang-jwt/jwt"
 )
 

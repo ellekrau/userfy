@@ -1,16 +1,17 @@
 package main
 
 import (
-	"github.com/ellekrau/mercafacil/config"
-	"github.com/ellekrau/mercafacil/config/client-config"
-	"github.com/ellekrau/mercafacil/database"
-	"github.com/ellekrau/mercafacil/server"
+	"github.com/ellekrau/userfy/config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	"github.com/ellekrau/userfy/database"
+	"github.com/ellekrau/userfy/server"
 )
 
 func main() {
 	config.LoadServiceConfig()
 	clientconfig.LoadClientsConfig()
 
-	database.LoadClientsDatabaseConnectionKeys()
+	//database.LoadClientsDatabaseConnectionKeys()
+	database.LoadClientDBConnections()
 	server.RunServer()
 }

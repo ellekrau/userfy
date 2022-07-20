@@ -2,7 +2,7 @@ package contracts
 
 import (
 	"fmt"
-	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
+	customerror "github.com/ellekrau/userfy/utils/custom-error"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )

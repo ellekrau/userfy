@@ -2,8 +2,8 @@ package authmiddleware
 
 import (
 	"fmt"
-	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
-	"github.com/ellekrau/mercafacil/utils/jwt"
+	customerror "github.com/ellekrau/userfy/utils/custom-error"
+	"github.com/ellekrau/userfy/utils/jwt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"

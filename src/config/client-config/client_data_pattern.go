@@ -2,7 +2,7 @@ package clientconfig
 
 import (
 	"fmt"
-	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
+	namepatternenum "github.com/ellekrau/userfy/utils/name-pattern-enum"
 	"strings"
 )
 

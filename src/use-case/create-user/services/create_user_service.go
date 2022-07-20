@@ -1,12 +1,12 @@
 package createuserservices
 
 import (
-	"github.com/ellekrau/mercafacil/config/client-config"
-	"github.com/ellekrau/mercafacil/database"
-	"github.com/ellekrau/mercafacil/database/repositories/user-repository"
-	"github.com/ellekrau/mercafacil/domain"
-	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
-	customerror "github.com/ellekrau/mercafacil/utils/custom-error"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	"github.com/ellekrau/userfy/database"
+	userrepository "github.com/ellekrau/userfy/database/repositories/user-repository"
+	"github.com/ellekrau/userfy/domain"
+	createuserservicecontracts "github.com/ellekrau/userfy/use-case/create-user/services/contracts"
+	customerror "github.com/ellekrau/userfy/utils/custom-error"
 )
 
 var errCodeDbCreateUser = "db_create_user"
