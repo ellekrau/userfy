@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"github.com/ellekrau/mercafacil/config"
 	cellphoneformatter "github.com/ellekrau/mercafacil/utils/cellphone-formatter"
 	nameformatter "github.com/ellekrau/mercafacil/utils/name-formatter"
 )
@@ -11,9 +12,9 @@ type User struct {
 	Cellphone string
 }
 
-func NewUser(name, cellphone string) User {
+func NewUser(clientUserConfig config.User, name, cellphone string) User {
 	return User{
-		Name:      nameformatter.FormatName(name),
-		Cellphone: cellphoneformatter.FormatCellphone(cellphone),
+		Name:      nameformatter.FormatName(clientUserConfig, name),
+		Cellphone: cellphoneformatter.FormatCellphone(clientUserConfig, cellphone),
 	}
 }

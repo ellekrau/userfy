@@ -8,25 +8,7 @@ import (
 
 var errInvalidToken = errors.New("invalid token")
 
-func GenerateJWTToken() (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, nil)
-	return token.SignedString([]byte(config.Authentication.JWTKey))
-}
-
-func ValidateJWTToken(token string) error {
-	keyFunc := func(token *jwt.Token) (interface{}, error) {
-		return []byte(config.Authentication.JWTKey), nil
-	}
-
-	_, err := jwt.Parse(token, keyFunc)
-	if err != nil {
-		return errors.New("invalid token")
-	}
-
-	return nil
-}
-
-func GenerateJWTTokenWithKey(key string) (string, error) {
+func GenerateJWTToken(key string) (string, error) {
 	c := CustomClaims{
 		Key: key,
 	}
@@ -35,12 +17,12 @@ func GenerateJWTTokenWithKey(key string) (string, error) {
 	return token.SignedString([]byte(config.Authentication.JWTKey))
 }
 
-func ValidateJWTTokenWithKey(token string) (CustomClaims, error) {
+func ValidateJWTToken(token string) (CustomClaims, error) {
 	keyFunc := func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.Authentication.JWTKey), nil
 	}
 
-	customClaims := CustomClaims{}
+	customClaims := &CustomClaims{}
 	extractedToken, err := jwt.ParseWithClaims(token, customClaims, keyFunc)
 	if err != nil {
 		return CustomClaims{}, errInvalidToken
@@ -50,10 +32,10 @@ func ValidateJWTTokenWithKey(token string) (CustomClaims, error) {
 		return CustomClaims{}, errInvalidToken
 	}
 
-	customClaims, ok := extractedToken.Claims.(CustomClaims)
+	customClaims, ok := extractedToken.Claims.(*CustomClaims)
 	if !ok {
 		return CustomClaims{}, errInvalidToken
 	}
 
-	return customClaims, nil
+	return *customClaims, nil
 }

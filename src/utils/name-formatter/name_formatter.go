@@ -6,13 +6,13 @@ import (
 	"strings"
 )
 
-func FormatName(inputName string) string {
+func FormatName(clientUserConfig config.User, inputName string) string {
 	// If the NamePatternEnum variable is empty just returns the name input value
-	if config.OldUserData.NamePattern == "" {
+	if clientUserConfig.Name == "" {
 		return inputName
 	}
 
-	switch namepatternenum.NewNamePatternEnum(config.OldUserData.NamePattern) {
+	switch namepatternenum.NewNamePatternEnum(clientUserConfig.Name) {
 	case namepatternenum.UpperCase:
 		return strings.ToUpper(inputName)
 	case namepatternenum.LowerCase:

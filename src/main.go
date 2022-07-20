@@ -10,11 +10,12 @@ import (
 
 func main() {
 	config.LoadConfig()
+	database.LoadDatabaseClientKeys()
 
 	godotenv.Load("./../.env")
-	database.StartDatabases()
+	//database.StartDatabases()
 
 	config.LoadEnvironmentVariables()
-	database.StartDatabase()
+	//database.StartDatabase()
 	server.RunServer()
 }

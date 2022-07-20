@@ -5,13 +5,13 @@ import (
 	"strings"
 )
 
-func FormatCellphone(inputCellphone string) string {
+func FormatCellphone(clientUserConfig config.User, inputCellphone string) string {
 	// If the CellphonePattern variable is empty just returns the cellphone input value
-	if config.OldUserData.CellphonePattern == "" {
+	if clientUserConfig.Cellphone == "" {
 		return inputCellphone
 	}
 
-	outputCellphone := strings.ToUpper(config.OldUserData.CellphonePattern)
+	outputCellphone := strings.ToUpper(clientUserConfig.Cellphone)
 	cellphoneDigits := strings.Split(inputCellphone, "")
 
 	for i := 0; i < len(cellphoneDigits); i++ {

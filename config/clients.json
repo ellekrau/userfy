@@ -20,7 +20,7 @@
         },
         {
             "key": "b759379b-0579-41d9-9752-de0c31308090",
-            "name": "postgres",
+            "name": "Varejao",
             "database": {
                 "database": "postgres",
                 "name": "admin",

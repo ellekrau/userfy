@@ -14,7 +14,7 @@ func GenerateJWT(c *gin.Context) {
 		return
 	}
 
-	jwtToken, err := jwt.GenerateJWTTokenWithKey(request.Key)
+	jwtToken, err := jwt.GenerateJWTToken(request.Key)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
 		return
