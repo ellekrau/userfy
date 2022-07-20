@@ -1,7 +1,8 @@
 package config
 
 import (
-	"github.com/Netflix/go-env"
+	"fmt"
+	"github.com/spf13/viper"
 	"log"
 )
 
@@ -24,13 +25,21 @@ var (
 )
 
 func LoadServiceConfig() {
+	var err error
+
+	v := viper.New()
+	v.SetConfigFile(".env")
+	if err = v.ReadInConfig(); err != nil {
+		log.Fatalln(fmt.Sprint("error in load .env: ", err.Error())) // TODO improve error message
+	}
+
 	// Loads services variables
-	if _, err := env.UnmarshalFromEnviron(&Service); err != nil {
+	if err = v.Unmarshal(&Service); err != nil {
 		log.Fatal(err)
 	}
 
 	// Loads auth variables
-	if _, err := env.UnmarshalFromEnviron(&Authentication); err != nil {
+	if err = v.Unmarshal(&Authentication); err != nil {
 		log.Fatal(err)
 	}
 

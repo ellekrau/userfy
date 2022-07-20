@@ -27,7 +27,6 @@ DATA_SECURITY_KEY=
 - [spf13/viper](https://github.com/spf13/viper)
 - [github.com/go-playground/validator/v10](https://github.com/go-playground/validator)
 - [stretchr/Testify](https://github.com/stretchr/testify)
-- [joho/go-dotenv](https://github.com/joho/godotenv)
 - [netflix/go-env](https://github.com/Netflix/go-env)
 - [golang-jwt/jwt](https://github.com/golang-jwt/jwt)
 - [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql) MySQL DB driver

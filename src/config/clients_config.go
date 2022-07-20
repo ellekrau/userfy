@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"log"
-	"os"
 )
 
 var clientsConfig Config
@@ -14,15 +13,21 @@ func GetClientsConfig() Config {
 }
 
 func LoadClientsConfig() {
-	v := viper.New()
-	dir, _ := os.Getwd() // TODO improve
-	v.SetConfigFile(dir + "../../config/clients.json")
+	//dir, err := os.Getwd() // TODO improve
+	//if err != nil {
+	//	log.Fatalln("error in get work directory")
+	//}
 
-	if err := v.ReadInConfig(); err != nil {
-		log.Fatalln(err) // TODO improve error message
+	var err error
+
+	v := viper.New()
+	v.SetConfigFile("clients.json")
+
+	if err = v.ReadInConfig(); err != nil {
+		log.Fatalln(fmt.Sprint("error in load clients config: ", err.Error())) // TODO improve error message
 	}
 
-	if err := v.Unmarshal(&clientsConfig); err != nil {
+	if err = v.Unmarshal(&clientsConfig); err != nil {
 		log.Fatalln(err) // TODO improve error message
 	}
 
