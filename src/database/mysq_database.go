@@ -3,11 +3,11 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func openMySQLDatabase(dbConfig config.Database) (*sql.DB, error) {
+func openMySQLDatabase(dbConfig clientconfig.Database) (*sql.DB, error) {
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
 

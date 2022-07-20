@@ -35,10 +35,10 @@ services:
     container_name: app
     ports:
       - "5100:5100"
-    links:
-      - mysql
     networks:
       - mynet
+    env_file:
+      - .env
     depends_on:
       - mysql
       - postgresql

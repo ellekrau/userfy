@@ -3,7 +3,7 @@ package userrepository
 import (
 	"database/sql"
 	"errors"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	"github.com/ellekrau/mercafacil/domain"
 	"strings"
 )
@@ -11,11 +11,11 @@ import (
 var errInvalidDatabase = "invalid database"
 
 type userRepository struct {
-	clientDBConfig config.Database
+	clientDBConfig clientconfig.Database
 	db             *sql.DB
 }
 
-func NewUserRepository(clientConfig config.Client, db *sql.DB) *userRepository {
+func NewUserRepository(clientConfig clientconfig.Client, db *sql.DB) *userRepository {
 	return &userRepository{
 		db:             db,
 		clientDBConfig: clientConfig.Database,

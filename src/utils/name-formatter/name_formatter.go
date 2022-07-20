@@ -1,12 +1,12 @@
 package nameformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
 	"strings"
 )
 
-func FormatName(clientUserConfig config.User, inputName string) string {
+func FormatName(clientUserConfig clientconfig.User, inputName string) string {
 	// If the NamePatternEnum variable is empty just returns the name input value
 	if clientUserConfig.Name == "" {
 		return inputName

@@ -1,11 +1,11 @@
 package cellphoneformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	"strings"
 )
 
-func FormatCellphone(clientUserConfig config.User, inputCellphone string) string {
+func FormatCellphone(clientUserConfig clientconfig.User, inputCellphone string) string {
 	// If the CellphonePattern variable is empty just returns the cellphone input value
 	if clientUserConfig.Cellphone == "" {
 		return inputCellphone

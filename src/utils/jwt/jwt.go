@@ -6,7 +6,7 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
-var errInvalidToken = errors.New("invalid token")
+var errInvalidToken = errors.New("invalid token error")
 
 func GenerateJWTToken(key string) (string, error) {
 	c := CustomClaims{

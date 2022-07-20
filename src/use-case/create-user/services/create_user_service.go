@@ -1,7 +1,7 @@
 package createuserservices
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	"github.com/ellekrau/mercafacil/database"
 	"github.com/ellekrau/mercafacil/database/repositories/user-repository"
 	"github.com/ellekrau/mercafacil/domain"
@@ -12,7 +12,7 @@ import (
 var errCodeDbCreateUser = "db_create_user"
 
 func CreateUser(input createuserservicecontracts.CreateUserServiceInput) (domain.User, *customerror.CustomError) {
-	client, err := config.GetClient(input.ClientKey)
+	client, err := clientconfig.GetClient(input.ClientKey)
 	if err != nil {
 		return domain.User{}, &customerror.CustomError{
 			Code:    "client_not_configured",

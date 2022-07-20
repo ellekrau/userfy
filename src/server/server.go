@@ -21,6 +21,6 @@ func RunServer() {
 	router.POST("/user", authmiddleware.Auth(), createuserhttphandler.CreateUserHttpHandler)
 
 	if err := router.Run(fmt.Sprintf(":%s", config.Service.Port)); err != nil {
-		log.Fatalln("error starting server: ", err.Error())
+		log.Fatalln("starting server error: ", err.Error())
 	}
 }

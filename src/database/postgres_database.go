@@ -3,11 +3,11 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	_ "github.com/lib/pq"
 )
 
-func openPostgresDatabaseWithReturn(dbConfig config.Database) (*sql.DB, error) {
+func openPostgresDatabaseWithReturn(dbConfig clientconfig.Database) (*sql.DB, error) {
 	connectionString := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
 

@@ -1,7 +1,7 @@
 package cellphoneformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -30,7 +30,7 @@ func TestFormatCellphone(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		userConfig := config.User{
+		userConfig := clientconfig.User{
 			Cellphone: tc.Pattern,
 		}
 

@@ -3,24 +3,24 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/mercafacil/config/client-config"
 	"strings"
 )
 
 var (
-	connections map[string]*sql.DB
+	clientsDBConnections map[string]*sql.DB
 )
 
-func LoadDatabaseClientKeys() {
-	connections = make(map[string]*sql.DB)
-	for _, client := range config.GetClientsConfig().Clients {
-		connections[client.Key] = nil
+func LoadClientsDatabaseConnectionKeys() {
+	clientsDBConnections = make(map[string]*sql.DB)
+	for _, client := range clientconfig.GetClientsConfig().Clients {
+		clientsDBConnections[client.Key] = nil
 	}
 }
 
 func StartDatabaseByClientKey(clientKey string) (err error) {
-	var client config.Client
-	if client, err = config.GetClient(clientKey); err != nil {
+	var client clientconfig.Client
+	if client, err = clientconfig.GetClient(clientKey); err != nil {
 		return fmt.Errorf("start database by client error: %v", err)
 	}
 
@@ -44,18 +44,18 @@ func StartDatabaseByClientKey(clientKey string) (err error) {
 		return fmt.Errorf("start databse by client key error: database ping error key['%s'] err: %v", clientKey, err)
 	}
 
-	connections[client.Key] = connection
+	clientsDBConnections[client.Key] = connection
 	return nil
 }
 
 func GetDatabaseByClientKey(clientKey string) (*sql.DB, error) {
-	if connections[clientKey] != nil {
-		return connections[clientKey], nil
+	if clientsDBConnections[clientKey] != nil {
+		return clientsDBConnections[clientKey], nil
 	}
 
 	if err := StartDatabaseByClientKey(clientKey); err != nil {
 		return nil, fmt.Errorf("get database by client key error key['%s'] error: %v", clientKey, err)
 	}
 
-	return connections[clientKey], nil
+	return clientsDBConnections[clientKey], nil
 }

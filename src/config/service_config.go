@@ -7,15 +7,15 @@ import (
 )
 
 type serviceConfig struct {
-	Port string `env:"PORT,required=true"`
+	Port string `validate:"required"`
 }
 
 type authenticationConfig struct {
-	JWTKey string `env:"JWT_KEY,required=true"`
+	JWTKey string `validate:"required"`
 }
 
 type dataSecurityConfig struct {
-	SecurityDataKey string `env:"DATA_SECURITY_KEY,required=true"`
+	SecurityDataKey string `validate:"required"`
 }
 
 var (
@@ -25,21 +25,19 @@ var (
 )
 
 func LoadServiceConfig() {
-	var err error
-
 	v := viper.New()
 	v.SetConfigFile(".env")
-	if err = v.ReadInConfig(); err != nil {
-		log.Fatalln(fmt.Sprint("error in load .env: ", err.Error())) // TODO improve error message
+	if err := v.ReadInConfig(); err != nil {
+		log.Fatalln(fmt.Sprint("load .env error: ", err.Error()))
 	}
 
 	// Loads services variables
-	if err = v.Unmarshal(&Service); err != nil {
+	if err := v.Unmarshal(&Service); err != nil {
 		log.Fatal(err)
 	}
 
 	// Loads auth variables
-	if err = v.Unmarshal(&Authentication); err != nil {
+	if err := v.Unmarshal(&Authentication); err != nil {
 		log.Fatal(err)
 	}
 
