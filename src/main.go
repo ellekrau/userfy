@@ -12,6 +12,8 @@ func main() {
 	clientconfig.LoadClientsConfig()
 
 	database.LoadClientDBConnections()
+	// TODO add a graceful web server stop
+	defer database.CloseDBConnections()
 
 	server.RunServer()
 }

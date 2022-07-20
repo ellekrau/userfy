@@ -4,13 +4,13 @@ import (
 	"database/sql"
 	"fmt"
 	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	"log"
 	"strings"
 )
 
 var clientsDBConnections clientsDBConnectionsThreadSafeMap
 
 func LoadClientDBConnections() {
-	// Used to avoid race condition in map read/write
 	clientsDBConnections = clientsDBConnectionsThreadSafeMap{
 		dbConnections: make(map[string]*sql.DB),
 	}
@@ -52,4 +52,14 @@ func startDatabaseByClientKey(clientKey string) (dbConnection *sql.DB, err error
 	}
 
 	return connection, nil
+}
+
+func CloseDBConnections() {
+	for key, db := range clientsDBConnections.dbConnections {
+		if err := db.Close(); err != nil {
+			log.Printf("closing DB connection error key['%s']\n", key)
+			continue
+		}
+		log.Printf("successfully closed DB connection key['%s']\n", key)
+	}
 }
