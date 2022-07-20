@@ -40,10 +40,7 @@ JWT_KEY=
 `docker exec -it app sh`
 
 ### MySQL
-`docker exec -it mercafacil_mysql_1 mysql -uroot -p`
-- Password: admin
-- `SHOW DATABASES;`
-- `USE admin;`
+`make enter_mysql`
 
 ### Postgres
-`docker exec -it mercafacil_postgresql_1 psql -d admin -U admin`
+`docker exec -it mercafacil_postgresql_1 psql -d admin -U admin admin`

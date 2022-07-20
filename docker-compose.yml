@@ -3,6 +3,7 @@ version: '3.3'
 services:
   mysql:
     image: mysql
+    container_name: mercafacil_mysql
     environment:
     - MYSQL_ROOT_PASSWORD=admin
     - MYSQL_DATABASE=admin
@@ -19,6 +20,7 @@ services:
 
   postgresql:
     image: postgres
+    container_name:  mercafacil_postgresql
     ports:
       - "5432:5432"
     expose:
@@ -30,9 +32,9 @@ services:
     networks:
       - mynet
 
-  app:
+  userfy:
     build: .
-    container_name: app
+    container_name: userfy
     ports:
       - "5100:5100"
     networks:
