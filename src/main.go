@@ -13,9 +13,7 @@ func main() {
 	database.LoadDatabaseClientKeys()
 
 	godotenv.Load("./../.env")
-	//database.StartDatabases()
 
 	config.LoadEnvironmentVariables()
-	//database.StartDatabase()
 	server.RunServer()
 }

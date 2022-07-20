@@ -26,7 +26,7 @@ func LoadConfig() {
 		log.Fatalln(err) // TODO improve error message
 	}
 
-	// TODO validate
+	// TODO validate structs
 }
 
 type Config struct {
