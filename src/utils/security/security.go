@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
-	"github.com/ellekrau/mercafacil/config"
+	"github.com/ellekrau/userfy/config"
 )
 
 var byteArray = []byte{114, 37, 111, 102, 42, 51, 52, 95, 102, 54, 121, 105, 102, 57, 114, 116}

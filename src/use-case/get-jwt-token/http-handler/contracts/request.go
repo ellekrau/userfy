@@ -13,18 +13,11 @@ var (
 )
 
 type Request struct {
-	Name      string `json:"name" validate:"required"`
-	Cellphone string `json:"cellphone" validate:"required,number,len=13"`
+	Key string `json:"name" validate:"required"`
 }
 
 func CreateRequest(c *gin.Context) (Request, *customerror.CustomError) {
-	r := Request{}
-	if err := c.ShouldBindJSON(&r); err != nil {
-		return Request{}, &customerror.CustomError{
-			Code:    errInvalidRequestBodyCode,
-			Message: fmt.Sprint(errInvalidRequestBodyMessage, err.Error()),
-		}
-	}
+	r := Request{Key: c.Query("key")}
 
 	if err := r.validateRequestContract(); err != nil {
 		return Request{}, &customerror.CustomError{

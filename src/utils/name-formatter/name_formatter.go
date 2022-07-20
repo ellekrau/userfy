@@ -1,18 +1,18 @@
 package nameformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
-	namepatternenum "github.com/ellekrau/mercafacil/utils/name-pattern-enum"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
+	namepatternenum "github.com/ellekrau/userfy/utils/name-pattern-enum"
 	"strings"
 )
 
-func FormatName(inputName string) string {
+func FormatName(clientUserConfig clientconfig.User, inputName string) string {
 	// If the NamePatternEnum variable is empty just returns the name input value
-	if config.UserData.NamePattern == "" {
+	if clientUserConfig.Name == "" {
 		return inputName
 	}
 
-	switch namepatternenum.NewNamePatternEnum(config.UserData.NamePattern) {
+	switch namepatternenum.NewNamePatternEnum(clientUserConfig.Name) {
 	case namepatternenum.UpperCase:
 		return strings.ToUpper(inputName)
 	case namepatternenum.LowerCase:

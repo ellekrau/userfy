@@ -3,18 +3,20 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ellekrau/mercafacil/config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	_ "github.com/go-sql-driver/mysql"
-	"log"
 )
 
-func openMySQLDatabase() {
+func openMySQLDatabase(dbConfig clientconfig.Database) (*sql.DB, error) {
+	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name)
+
+	var connection *sql.DB
 	var err error
 
-	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Name)
-
-	if database, err = sql.Open("mysql", connectionString); err != nil {
-		log.Fatalln(errDatabaseConnection, err.Error())
+	if connection, err = sql.Open("mysql", connectionString); err != nil {
+		return nil, fmt.Errorf("open MySQL database connection error: %v", err)
 	}
+
+	return connection, nil
 }

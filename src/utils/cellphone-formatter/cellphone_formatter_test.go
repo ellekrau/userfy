@@ -1,7 +1,7 @@
 package cellphoneformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -30,7 +30,10 @@ func TestFormatCellphone(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		config.UserData.CellphonePattern = tc.Pattern
-		assert.Equal(t, tc.Expected, FormatCellphone("5541994330786"))
+		userConfig := clientconfig.User{
+			Cellphone: tc.Pattern,
+		}
+
+		assert.Equal(t, tc.Expected, FormatCellphone(userConfig, "5541994330786"))
 	}
 }

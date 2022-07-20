@@ -1,0 +1,40 @@
+{
+    "clients": [
+        {
+            "key": "96f763a4-4998-405d-ab0d-b8cd9c7c9889",
+            "name": "Macapa",
+            "database": {
+                "database": "mysql",
+                "name": "admin",
+                "host": "mysql",
+                "port": "3306",
+                "user": "admin",
+                "password": "admin"
+            },
+            "dataPattern": {
+                "user": {
+                    "name": "uppercase",
+                    "cellphone": "+XX (XX) XXXXX-XXXX"
+                }
+            }
+        },
+        {
+            "key": "b759379b-0579-41d9-9752-de0c31308090",
+            "name": "Varejao",
+            "database": {
+                "database": "postgres",
+                "name": "admin",
+                "host": "postgresql",
+                "port": "5432",
+                "user": "admin",
+                "password": "admin"
+            },
+            "dataPattern": {
+                "user": {
+                    "name": "",
+                    "cellphone": ""
+                }
+            }
+        }
+    ]
+}

@@ -1,17 +1,17 @@
 package cellphoneformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"strings"
 )
 
-func FormatCellphone(inputCellphone string) string {
+func FormatCellphone(clientUserConfig clientconfig.User, inputCellphone string) string {
 	// If the CellphonePattern variable is empty just returns the cellphone input value
-	if config.UserData.CellphonePattern == "" {
+	if clientUserConfig.Cellphone == "" {
 		return inputCellphone
 	}
 
-	outputCellphone := strings.ToUpper(config.UserData.CellphonePattern)
+	outputCellphone := strings.ToUpper(clientUserConfig.Cellphone)
 	cellphoneDigits := strings.Split(inputCellphone, "")
 
 	for i := 0; i < len(cellphoneDigits); i++ {

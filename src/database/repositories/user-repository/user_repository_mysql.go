@@ -2,7 +2,7 @@ package userrepository
 
 import (
 	"database/sql"
-	"github.com/ellekrau/mercafacil/domain"
+	"github.com/ellekrau/userfy/domain"
 )
 
 func createUserMySQL(db *sql.DB, user *domain.User) (err error) {

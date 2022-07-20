@@ -1,7 +1,7 @@
 package nameformatter
 
 import (
-	"github.com/ellekrau/mercafacil/config"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -30,7 +30,9 @@ func TestFormatName(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		config.UserData.NamePattern = tc.namePattern
-		assert.Equal(t, tc.expectedResult, FormatName("Testing the function"), tc.testCase)
+		userConfig := clientconfig.User{
+			Name: tc.namePattern,
+		}
+		assert.Equal(t, tc.expectedResult, FormatName(userConfig, "Testing the function"), tc.testCase)
 	}
 }

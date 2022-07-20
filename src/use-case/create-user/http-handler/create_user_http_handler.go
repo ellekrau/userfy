@@ -2,9 +2,10 @@ package createuserhttphandler
 
 import (
 	"fmt"
-	"github.com/ellekrau/mercafacil/use-case/create-user/http-handler/contracts"
-	createuserservices "github.com/ellekrau/mercafacil/use-case/create-user/services"
-	createuserservicecontracts "github.com/ellekrau/mercafacil/use-case/create-user/services/contracts"
+	"github.com/ellekrau/userfy/use-case/create-user/http-handler/contracts"
+	createuserservices "github.com/ellekrau/userfy/use-case/create-user/services"
+	createuserservicecontracts "github.com/ellekrau/userfy/use-case/create-user/services/contracts"
+	customerror "github.com/ellekrau/userfy/utils/custom-error"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -16,7 +17,16 @@ func CreateUserHttpHandler(c *gin.Context) {
 		return
 	}
 
-	serviceInput := createuserservicecontracts.NewCreateUserServiceInput(request.Name, request.Cellphone)
+	clientKey, ok := c.Get("key")
+	if !ok {
+		c.JSON(http.StatusInternalServerError, customerror.CustomError{
+			Code:    "invalid_client_key",
+			Message: "Error in get client key from request",
+		})
+		return
+	}
+
+	serviceInput := createuserservicecontracts.NewCreateUserServiceInput(clientKey.(string), request.Name, request.Cellphone)
 	user, serviceErr := createuserservices.CreateUser(serviceInput)
 	if serviceErr != nil {
 		c.JSON(http.StatusInternalServerError, serviceErr)
