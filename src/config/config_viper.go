@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"github.com/spf13/viper"
 	"log"
 	"os"
@@ -55,4 +56,14 @@ type DataPattern struct {
 type User struct {
 	Name      string `json:"name"`
 	Cellphone string `json:"cellphone"`
+}
+
+func GetClient(clientKey string) (Client, error) {
+	for _, c := range clientsConfig.Clients {
+		if c.Key == clientKey {
+			return c, nil
+		}
+	}
+
+	return Client{}, fmt.Errorf("client not found by key: %s", clientKey)
 }
