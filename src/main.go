@@ -11,7 +11,7 @@ func main() {
 	config.LoadServiceConfig()
 	clientconfig.LoadClientsConfig()
 
-	//database.LoadClientsDatabaseConnectionKeys()
 	database.LoadClientDBConnections()
+
 	server.RunServer()
 }

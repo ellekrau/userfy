@@ -6,7 +6,7 @@
             "database": {
                 "database": "mysql",
                 "name": "admin",
-                "host": "localhost",
+                "host": "mysql",
                 "port": "3306",
                 "user": "admin",
                 "password": "admin"
@@ -24,7 +24,7 @@
             "database": {
                 "database": "postgres",
                 "name": "admin",
-                "host": "localhost",
+                "host": "postgresql",
                 "port": "5432",
                 "user": "admin",
                 "password": "admin"

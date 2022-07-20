@@ -12,7 +12,7 @@ func LoadClientsConfig() {
 	var err error
 
 	v := viper.New()
-	v.SetConfigFile("./../clients.json")
+	v.SetConfigFile("clients.json")
 
 	if err = v.ReadInConfig(); err != nil {
 		log.Fatalln(fmt.Sprint("load clients.json config file error: ", err.Error()))

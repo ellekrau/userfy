@@ -26,7 +26,7 @@ var (
 
 func LoadServiceConfig() {
 	v := viper.New()
-	v.SetConfigFile("./../.env")
+	v.SetConfigFile(".env")
 	if err := v.ReadInConfig(); err != nil {
 		log.Fatalln(fmt.Sprint("load .env error: ", err.Error()))
 	}
