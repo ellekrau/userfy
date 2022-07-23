@@ -10,24 +10,21 @@ import (
 
 var errInvalidDatabase = "invalid database"
 
+type IUserRepository interface {
+	CreateUser(user *domain.User) error
+}
+
 type userRepository struct {
 	clientDBConfig clientconfig.Database
 	db             *sql.DB
 }
 
-func NewUserRepository(clientConfig clientconfig.Client, db *sql.DB) *userRepository {
-	return &userRepository{
-		db:             db,
-		clientDBConfig: clientConfig.Database,
-	}
-}
-
-func (ur userRepository) CreateUser(user *domain.User) (err error) {
-	switch strings.ToLower(ur.clientDBConfig.Database) {
-	case "postgres":
-		return createUserPostgres(ur.db, user)
+func NewUserRepository(clientConfig clientconfig.Client, db *sql.DB) (IUserRepository, error) {
+	switch strings.ToLower(clientConfig.Database.Database) {
 	case "mysql":
-		return createUserMySQL(ur.db, user)
+		return newMySQLUserRepository(clientConfig, db), nil
+	case "postgres":
+		return newPostgresUserRepository(clientConfig, db), nil
 	}
-	return errors.New(errInvalidDatabase)
+	return nil, errors.New(errInvalidDatabase)
 }

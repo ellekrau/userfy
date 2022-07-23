@@ -2,12 +2,26 @@ package userrepository
 
 import (
 	"database/sql"
+	clientconfig "github.com/ellekrau/userfy/config/client-config"
 	"github.com/ellekrau/userfy/domain"
 )
 
-func createUserMySQL(db *sql.DB, user *domain.User) (err error) {
+type mySQLUserRepository struct {
+	userRepository
+}
+
+func newMySQLUserRepository(clientConfig clientconfig.Client, db *sql.DB) *mySQLUserRepository {
+	return &mySQLUserRepository{
+		userRepository{
+			clientDBConfig: clientConfig.Database,
+			db:             db,
+		},
+	}
+}
+
+func (mur mySQLUserRepository) CreateUser(user *domain.User) (err error) {
 	var statement *sql.Stmt
-	if statement, err = db.Prepare("INSERT INTO contacts (nome, celular) VALUES (?, ?)"); err != nil {
+	if statement, err = mur.db.Prepare("INSERT INTO contacts (nome, celular) VALUES (?, ?)"); err != nil {
 		return
 	}
 	defer statement.Close()
