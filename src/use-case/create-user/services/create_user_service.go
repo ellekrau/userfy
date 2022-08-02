@@ -9,28 +9,39 @@ import (
 	customerror "github.com/ellekrau/userfy/utils/custom-error"
 )
 
-var errCodeDbCreateUser = "db_create_user"
+var (
+	errCodeDbCreateUser        = "db_create_user"
+	errCodeDbGetDatabase       = "get_database"
+	errCodeDbGetUserRepository = "get_user_repository"
+	errClientNotConfigured     = "client_not_configured"
+)
 
 func CreateUser(input createuserservicecontracts.CreateUserServiceInput) (domain.User, *customerror.CustomError) {
 	client, err := clientconfig.GetClient(input.ClientKey)
 	if err != nil {
 		return domain.User{}, &customerror.CustomError{
-			Code:    "client_not_configured",
-			Message: "Client not configured.",
+			Code:    errClientNotConfigured,
+			Message: err.Error(),
 		}
 	}
 
 	db, err := database.GetDatabaseByClientKey(input.ClientKey)
 	if err != nil {
 		return domain.User{}, &customerror.CustomError{
-			Code:    "get_database",
+			Code:    errCodeDbGetDatabase,
 			Message: err.Error(),
 		}
 	}
 
-	userRepository := userrepository.NewUserRepository(client, db)
-	user := domain.NewUser(client.DataPattern.User, input.Name, input.Cellphone)
+	userRepository, err := userrepository.NewUserRepository(client, db)
+	if err != nil {
+		return domain.User{}, &customerror.CustomError{
+			Code:    errCodeDbGetUserRepository,
+			Message: err.Error(),
+		}
+	}
 
+	user := domain.NewUser(client.DataPattern.User, input.Name, input.Cellphone)
 	if err = userRepository.CreateUser(&user); err != nil {
 		return domain.User{}, &customerror.CustomError{
 			Code:    errCodeDbCreateUser,
